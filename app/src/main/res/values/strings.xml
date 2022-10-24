@@ -2,4 +2,5 @@
     <string name="app_name">MovieCatalog</string>
     <string name="nullData">-</string>
     <string name="img">img</string>
+    <string name="title_activity_compose_now_playing">ComposeNowPlaying</string>
 </resources>
