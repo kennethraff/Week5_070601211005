@@ -2,6 +2,7 @@ package com.uc.moviecatalog.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.HorizontalScrollView
 import android.widget.Toast
@@ -93,6 +94,11 @@ class MovieDetailActivity : AppCompatActivity() {
             Glide.with(applicationContext)
                 .load(Const.IMG_URL+ response.backdrop_path)
                 .into(binding.imagePosterMovieDetail)
+        })
+
+        viewModel.getMahasiswaData()
+        viewModel.mahasiswa.observe(this, Observer {
+            response-> Log.e("Data Mahasiswa",response.toString())
         })
 
         viewModel.movieGenre.observe(this, Observer { response->

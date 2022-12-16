@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import com.uc.moviecatalog.model.*
 import com.uc.moviecatalog.repository.MoviesRepository
 import javax.inject.Inject
@@ -64,6 +66,50 @@ class MoviesViewModel @Inject constructor(private val repository: MoviesReposito
                 _movieCountry.postValue(response.body()?.production_countries as List<ProductionCountry>)
             }else {
                 Log.e("Get Data","Failed!")
+            }
+        }
+    }
+//    //Get Mahasiswa
+//    val _mahasiswa: MutableLiveData<JsonObject> by lazy{
+//        MutableLiveData<JsonObject>()
+//    }
+//    val mahasiswa: LiveData<JsonObject> get() = _mahasiswa
+//
+//    fun getMahasiswaData() = viewModelScope.launch{
+//        repository.getMahasiswaResults().let{ response ->
+//            if(response.isSuccessful){
+//                _mahasiswa.value = response.body()
+//                val array:JsonArray= _mahasiswa.value!!.getAsJsonArray("Data")
+//                for (jsonObj in array){
+//                    Log.e("Test 1", jsonObj.asJsonObject["nim"].toString())
+//                }
+////                Log.d("Test1", _mahasiswa.value.toString())
+//            }else{
+//                Log.e("Get Mahasiswa Data", "Failed!")
+//            }
+//        }
+//    }
+//Get Mahasiswa
+val _mahasiswa: MutableLiveData<JsonObject> by lazy {
+    MutableLiveData<JsonObject>()
+}
+
+    val mahasiswa: LiveData<JsonObject>
+        get() = _mahasiswa
+
+    fun getMahasiswaData() = viewModelScope.launch {
+        repository.getMahasiswaResults().let { response ->
+            if (response.isSuccessful){
+                _mahasiswa.value = response.body();
+                val array: JsonArray = _mahasiswa.value!!.getAsJsonArray("data")
+                for(jsonObj in array){
+//                    var mMineUserEntity:user = Gson().fromJson(jsonObj, user::class.java)
+
+                    Log.e("Test1", jsonObj.asJsonObject["nim"].toString())
+                }
+
+            }else{
+                Log.e("Get Mahasiswa Data","Failed")
             }
         }
     }

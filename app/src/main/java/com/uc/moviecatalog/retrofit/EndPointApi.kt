@@ -1,13 +1,21 @@
 package com.uc.moviecatalog.retrofit
 
+import com.google.gson.JsonObject
 import com.uc.moviecatalog.model.MovieDetails
 import com.uc.moviecatalog.model.NowPlaying
+import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface EndPointApi {
+
+
+    @GET("/mahasiswa")
+    suspend fun  getMahsiswa(
+
+    ):Response<JsonObject>
     @GET("movie/now_playing")
     suspend fun getNowPlaying(
         @Query("api_key") apiKey: String,

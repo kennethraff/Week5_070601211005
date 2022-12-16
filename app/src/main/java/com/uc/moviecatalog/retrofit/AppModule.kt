@@ -24,6 +24,6 @@ object AppModule {
     @Singleton
     @Provides
     fun getRetrofitUnstance():Retrofit{
-        return Retrofit.Builder().baseUrl(Const.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build()
+        return Retrofit.Builder().baseUrl(Const.BASE_URL_LOCALHOST).addConverterFactory(GsonConverterFactory.create()).build()
     }
 }
